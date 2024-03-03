@@ -550,6 +550,11 @@ h2 strong {
     height: 250px;
 }
 
+.portfolio-item.certification img{
+    border-radius: 5px;
+    height: 350px;
+}
+
 
 .portfolio-item {
     position: relative;
