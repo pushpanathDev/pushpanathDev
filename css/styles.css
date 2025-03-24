@@ -302,19 +302,28 @@ h2 strong {
 
 /*======= Hello Button  =======*/
 
-.hello-btn a{
+.button-container {
+    display: flex;
+    gap: 20px; /* Adds space between buttons */
+    margin-top: 20px;
+  }
+  
+  .hello-btn a,
+  .download-btn a {
     display: inline-block;
-    margin: 20px 0;
-    padding: 15px 45px;
-    color: #FFF;
-    background-color : #6366f1 ;
-    line-height: 30px;
-    transition: all 0.3s ease-out 0s;
-}
-
-.hello-btn a:hover{
-    background-color: #293b5f
- }
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .hello-btn a:hover,
+  .download-btn a:hover {
+    background: #0056b3;
+  }
+  
 
  /*======= Style for Resume Body  =======*/
 
@@ -459,21 +468,21 @@ h2 strong {
 }
 
 
-/*======= Style for Service Section  =======*/
+/*======= Style for skills Section  =======*/
 
-#services{
+#skills_section{
     padding: 60px 0;
     background-color: var(--bg-color1);
 }
 
-.services-row{
+.skill-row{
     display: grid;
     grid-template-rows: repeat(1, 1fr);
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.service-card{
+.skill-card{
     background:var(--bg-color2);
     cursor: pointer;
     border-radius: 5px;
@@ -482,32 +491,32 @@ h2 strong {
     transition: .4s;
 }
 
-.service-card .icon{
+.skill-card .icon{
     font-size: 2.5rem;
     transition: .4s;
     color: var(--color1);
 
 }
 
-.service-content h6{
+.skill-content h6{
     color: var(--color1);
     transition: .4s;
     margin: 1rem 0;
 }
 
-.service-content p{
+.skill-content p{
     transition: .4s;
     color: var(--color1);
 }
 
-.service-card:hover{
+.skill-card:hover{
     background-color: #525fe1;
     transform: translateY(-10.5px);
 }
 
-.service-card:hover .icon,
-.service-card:hover h6,
-.service-card:hover p{
+.skill-card:hover .icon,
+.skill-card:hover h6,
+.skill-card:hover p{
     color: #FFF;
 }
 
@@ -524,6 +533,7 @@ h2 strong {
     justify-content: center;
     align-items: center;
 }
+
 
 /*======= Portfolio Gallery =======*/
 
@@ -545,10 +555,6 @@ h2 strong {
     height: 350px;
 }
 
-.portfolio-item.achievements img{
-    border-radius: 5px;
-    height: 350px;
-}
 
 .portfolio-item.certification img{
     border-radius: 5px;
@@ -603,6 +609,39 @@ h2 strong {
 }
 
 .portfolio-item:hover .product-title{
+    bottom: 30%;
+    opacity: 1;
+}
+
+/*======= Style for achievements section  =======*/
+#achievements{
+    padding: 60px 0;
+    background-color: var(--bg-color1);
+}
+
+.achievements-item img{
+    border-radius: 5px;
+    height: 350px;
+}
+
+.achievements-item-content {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    right: 25px;
+    bottom: 25px;
+    background-color: rgba(16, 16, 16, .5);
+    transition: .5s;
+    transform: scale(1.15);
+    opacity: 0;
+} 
+
+.achievements-item:hover .achievements-item-content {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.achievements-item:hover .product-title{
     bottom: 30%;
     opacity: 1;
 }
@@ -925,9 +964,9 @@ footer{
     }
 
 
-    /*======= Service Section Responsive  =======*/
+    /*======= skills Section Responsive  =======*/
 
-    .service-row{
+    .skill-row{
         grid-template-columns: repeat(3, 1fr);
     }
 

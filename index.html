@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="icon" type="image" href="/image/Programming.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <title>portfolio</title>
   </head>
 
@@ -27,16 +29,20 @@
                 <a href="#about" class="navbar-link active-link">Home</a>
               </li>
 
-              <li>
+              <!-- <li>
                 <a href="#resume" class="navbar-link">About</a>
-              </li>
+              </li> -->
 
               <li>
-                <a href="#services" class="navbar-link">Services</a>
+                <a href="#skills_section" class="navbar-link">Skills</a>
               </li>
 
               <li>
                 <a href="#projects" class="navbar-link">Projects</a>
+              </li>
+
+              <li>
+                <a href="#achievements" class="navbar-link">Achievements</a>
               </li>
 
               <li>
@@ -70,10 +76,10 @@
                 👋 Hey There, <br />
                 I'm Pushpanath.
               </h1>
-              <h3>Front-End Developer</h3>
+              <h3>Full Stack Developer</h3>
               <p>
-                Transforming pixels into magic: The wizardry of a front-end
-                developer.
+                Transforming pixels into magic: The wizardry of a Full-Stack
+                Developer.
               </p>
             </div>
           </div>
@@ -98,12 +104,11 @@
               <p style="text-align: justify">
                 As a Full-Stack Developer, I enjoy building things that not only
                 work well but actually make a difference. I specialize in
-                front-end development, and I work with React.js, Next.js, and
+                front-end development, and I work with ReactJS, NextJS, and
                 modern web technologies, turning complex problems into smooth,
                 user-friendly experiences. Cloud technologies, especially Google
                 Cloud Platform (GCP), are a big part of what I do.
               </p>
-
               <br />
               <p style="text-align: justify">
                 I focus on making cloud infrastructures reliable, optimized, and
@@ -114,10 +119,18 @@
                 something that just works.
               </p>
             </div>
-            <div class="hello-btn">
-              <a href="#contact">Say Hello</a>
+          
+            <!-- Buttons Wrapped in a Container -->
+            <div class="button-container">
+              <div class="hello-btn">
+                <a href="#contact">Say Hello</a>
+              </div>
+              <div class="download-btn">
+                <a href="assets/Pushpanath_M_R_Resume.pdf" download="Pushpanath_M_R_Resume.pdf">Download CV</a>
+              </div>
             </div>
           </div>
+          
           <!-- Resume Intro Ends -->
 
           <!-- Resume Body Begins -->
@@ -133,7 +146,9 @@
                 Experience
               </button>
 
-              <button class="btn" type="button" data-id="skills">Skills</button>
+              <button class="btn" type="button" data-id="skills1">
+                Skills
+              </button>
             </div>
             <!-- Resume Heading Ends -->
 
@@ -142,7 +157,7 @@
               <div class="qualification-content">
                 <h4 class="course">SSLC</h4>
                 <h6 class="institution">
-                  St'Mary's Matric Higher Secondary School
+                  St Mary's Matric Higher Secondary School
                 </h6>
                 <span class="years">2007-2019</span>
               </div>
@@ -163,14 +178,14 @@
             <div class="resume-tab" id="experience">
               <div class="qualification-content">
                 <h4>Full Stack Developer</h4>
-                <h6 class="organization">CodeStreams</h6>
+                <h6 class="organization">CodeStreams Pvt Ltd</h6>
                 <span class="years">2023</span>
               </div>
             </div>
             <!-- Experience Tab Ends -->
 
             <!-- Skills Tab Begins -->
-            <div class="resume-tab" id="skills">
+            <div class="resume-tab" id="skills1">
               <div class="bar-content">
                 <div class="bar-heading">
                   <div class="bar-title">Design Tools</div>
@@ -208,36 +223,38 @@
       </div>
     </section>
 
-    <!-- Services Section Begins-->
-    <section id="services">
+    <!-- skills Section Begins-->
+    <section id="skills_section">
       <div class="portfolio-container">
-        <h2><strong>What Do I Help</strong>🛠️</h2>
-        <div class="service-row">
-          <div class="service-card">
+        <h2><strong>How I Contribute</strong>🛠️</h2>
+        <div class="skills-row">
+          <div class="skill-card">
             <div class="icon">
-              <i class="lni lni-css3"></i>
+              <i class="fas fa-code"></i> 
             </div>
-            <div class="service-content">
-              <h6>Web development</h6>
-              <p>Elevate your Online presence with Dynamic Web design</p>
+            <div class="skill-content">
+              <h6>Web Development</h6>
+              <p>Build fast, scalable, and SEO-friendly websites with NextJS</p>
             </div>
           </div>
+          
 
-          <div class="service-card">
+          <div class="skill-card">
             <div class="icon">
-              <i class="lni lni-adobe"></i>
+              <i class="fab fa-react"></i>
             </div>
-            <div class="service-content">
-              <h6>UI-UX Design</h6>
-              <p>Transform your brand narrative with innovative designs</p>
+            <div class="skill-content">
+              <h6>Mobile Development</h6>
+              <p>Build cross-platform apps using React Native & Expo Go</p>
             </div>
           </div>
+          
 
-          <div class="service-card">
+          <div class="skill-card">
             <div class="icon">
               <i class="lni lni-google-cloud"></i>
             </div>
-            <div class="service-content">
+            <div class="skill-content">
               <h6>Cloud Computing</h6>
               <p>Into the World of Cloud Extravaganza</p>
             </div>
@@ -246,7 +263,7 @@
       </div>
     </section>
 
-    <!-- Services Section Ends-->
+    <!-- skills Section Ends-->
 
     <!-- Project Section Begins -->
     <section id="projects">
@@ -256,14 +273,11 @@
           <!-- Portfolio Nav Filter Begins-->
           <div class="portfolio-filter-nav">
             <button class="btn active" data-id="all" type="button">All</button>
-            <button class="btn active" data-id="certification" type="button">
-              Certifications
-            </button>
             <button class="btn active" data-id="development" type="button">
               Development
             </button>
-            <button class="btn active" data-id="achievements" type="button">
-              Achievements
+            <button class="btn active" data-id="certification" type="button">
+              Certifications
             </button>
           </div>
           <!-- Portfolio Nav Filter Ends -->
@@ -296,6 +310,9 @@
 
               <div class="portfolio-col">
                 <div class="portfolio-item development">
+                  <a href="https://github.com/Vishwanth-Prakash/Trip_360"
+                    target="_blank"
+                  >
                   <img src="image/Trip_360.png" alt="" />
                   <div class="portfolio-item-content">
                     <div class="product-title">
@@ -308,32 +325,20 @@
                   </div>
                 </div>
 
-                <div class="portfolio-item achievements">
-                  <img
-                    src="image/Google-arcade.png"
-                    alt="Google Cloud Arcade"
-                  />
-                  <div class="portfolio-item-content">
-                    <div class="product-title">
-                      <h4>Google Cloud Arcade - Cloud Skills Boost</h4>
-                      <p>Season 1: Gold League | Season 2: Diamond League</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- <div class="portfolio-item development">
+                <div class="portfolio-item development">
                   <img
                     loading="lazy"
-                    src="image/churn prediction image.png"
+                    src="image/Customer Churn Analysis.png"
                     alt=""
                   />
                   <div class="portfolio-item-content">
                     <div class="product-title">
                       <h4>Customer Churn Analysis</h4>
-                      <p>Using Machine Learning</p>
+                      <p>Predicting customer churn using machine learning.</p>
                     </div>
                   </div>
-                </div> -->
+                  
+                </div>
 
                 <div class="portfolio-item certification">
                   <a
@@ -396,6 +401,42 @@
       </div>
     </section>
     <!-- Project Section Ends-->
+
+    <!--  Achievements Section Begins-->
+    <section id="achievements">
+      <div class="portfolio-container">
+        <h2><strong>Achievements</strong>🏅</h2>
+        <!-- Main Portfolio Begins-->
+        <div class="portfolio-wrapper">
+          <div class="portfolio-col">
+            <div class="achievements-item">
+              <a
+                href="https://www.cloudskillsboost.google/public_profiles/1f177eb8-f37b-43e9-bdd0-ef4a90617dd3"
+                target="_blank"
+              >
+                <img
+                  loading="lazy"
+                  src="image/arcade.jpg"
+                  alt="Google Cloud Arcade"
+                />
+                <div class="achievements-item-content">
+                  <div class="product-title">
+                    <h4>Google Cloud Arcade - Cloud Skills Boost</h4>
+                    <p>
+                      Season - 2023 | Gold League | 37 Badges | 56,765 points
+                    </p>
+                    <p>
+                      Season - 2024 | Diamond League | 33 Badges | 74,285 points
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!---- Main Portfolio Ends-->
+      </div>
+    </section>
 
     <!-- Contact Section Begins -->
     <section id="contact">
