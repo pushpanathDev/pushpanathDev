@@ -312,8 +312,8 @@ h2 strong {
   .download-btn a {
     display: inline-block;
     padding: 10px 20px;
-    background: #007bff;
-    color: white;
+    background: #4d63dd;
+    color: #FFF;
     text-decoration: none;
     border-radius: 5px;
     transition: 0.3s ease-in-out;
@@ -321,7 +321,8 @@ h2 strong {
   
   .hello-btn a:hover,
   .download-btn a:hover {
-    background: #0056b3;
+    background: #d5d5d5;
+    color: #000;
   }
   
 
@@ -431,13 +432,30 @@ h2 strong {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center; /* Ensures proper vertical alignment */
     padding: 20px 0;
+}
+
+.bar-title {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Spacing between text and icons */
+}
+
+.bar-icons {
+    display: flex;
+    gap: 10px; /* Spacing between icons */
 }
 
 .bar-title,
 .bar-percentage {
     color: var(--color1);
 }
+
+.bar-icons i {
+    font-size: 24px; /* Increased icon size */
+}
+
 
 .bar-progress {
     display: flex;
