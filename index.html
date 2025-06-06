@@ -32,9 +32,9 @@
                 <a href="#about" class="navbar-link active-link">Home</a>
               </li>
 
-              <!-- <li>
+              <li>
                 <a href="#resume" class="navbar-link">About</a>
-              </li> -->
+              </li>
 
               <li>
                 <a href="#skills_section" class="navbar-link">Skills</a>
@@ -70,6 +70,14 @@
     <!-- About Section Begins -->
 
     <section id="about">
+      <div class="career-popup" id="careerPopup">
+        <p>
+          🚀 Career Update: Started a 10-month Software Internship at
+          <strong>Nokia, Bangalore</strong>!
+        </p>
+      </div>
+      <canvas id="confettiCanvas"></canvas>
+
       <div class="portfolio-container">
         <div class="portfolio-row about-content">
           <!-- Greetings and Introduction Begins-->
@@ -148,12 +156,11 @@
             <h2><strong>Qualifications</strong></h2>
             <!-- Resume Heading Begins -->
             <div class="resume-heading">
-              <button class="btn active" type="button" data-id="education">
-                Education
-              </button>
-
-              <button class="btn" type="button" data-id="experience">
+              <button class="btn active" type="button" data-id="experience">
                 Experience
+              </button>
+              <button class="btn" type="button" data-id="education">
+                Education
               </button>
 
               <button class="btn" type="button" data-id="skills1">
@@ -161,9 +168,30 @@
               </button>
             </div>
             <!-- Resume Heading Ends -->
+            <!-- Experience Tab Begins -->
+            <div class="resume-tab active" id="experience">
+              <div class="qualification-content">
+                <h4>Software Intern</h4>
+                <h6 class="organization">Nokia - Banglore</h6>
+                <span class="years">Present</span>
+              </div>
 
+              <div class="qualification-content">
+                <h4>Full Stack Developer</h4>
+                <h6 class="organization">CodeStreams Pvt Ltd - Banglore</h6>
+                <span class="years">2023</span>
+              </div>
+
+              <div class="qualification-content">
+                <h4>Outreach Team Member</h4>
+                <h6 class="organization">Event Managers Club - VIT CHENNAI</h6>
+                <span class="years">2022 - 2023</span>
+              </div>
+            </div>
+
+            <!-- Experience Tab Ends -->
             <!-- Education Tab Begins -->
-            <div class="resume-tab active" id="education">
+            <div class="resume-tab" id="education">
               <div class="qualification-content">
                 <h4 class="course">SSLC</h4>
                 <h6 class="institution">
@@ -183,22 +211,6 @@
               </div>
             </div>
             <!-- Education Tab Ends -->
-
-            <!-- Experience Tab Begins -->
-            <div class="resume-tab" id="experience">
-              <div class="qualification-content">
-                <h4>Full Stack Developer</h4>
-                <h6 class="organization">CodeStreams Pvt Ltd</h6>
-                <span class="years">2023</span>
-              </div>
-
-              <div class="qualification-content">
-                <h4>Outreach Team Member</h4>
-                <h6 class="organization">Event Managers Club - VIT CHENNAI</h6>
-                <span class="years">2022 - 2023</span>
-              </div>
-            </div>
-            <!-- Experience Tab Ends -->
 
             <!-- Skills Tab Begins -->
             <div class="resume-tab" id="skills1">
@@ -646,6 +658,6 @@
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
     ></script>
     <script src="js/script.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   </body>
 </html>

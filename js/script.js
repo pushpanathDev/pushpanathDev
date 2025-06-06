@@ -1,12 +1,10 @@
 // Toggle Visibility Of Navbar When Button Clicked
-
 const navToggle = document.querySelector(".navbar-toggle");
 navToggle.addEventListener("click", function () {
   document.querySelector(".portfolio-navbar").classList.toggle("show");
 });
 
 // Tab Interface For Resume
-
 const resumeHeading = document.querySelector(".resume-heading");
 const resumeTabs = document.querySelectorAll(".resume-tab");
 
@@ -26,7 +24,6 @@ resumeHeading.onclick = (event) => {
 };
 
 // Portfolio Filter
-
 const filterContainer = document.querySelector(".portfolio-filter-nav");
 const galleryItems = document.querySelectorAll(".portfolio-item");
 
@@ -47,11 +44,9 @@ filterContainer.addEventListener("click", (e) => {
 });
 
 // Send Email
-
 const msg = document.querySelector(".form-message");
 
 (function () {
-  // https://dashboard.emailjs.com/admin/account
   emailjs.init("uunnnvA_9NRaqUan0");
 })();
 
@@ -61,28 +56,25 @@ window.onload = function () {
     .addEventListener("submit", function (event) {
       event.preventDefault();
       document.querySelector(".loader").classList.add("show");
-      // Replace With Your Email Service ID & Contact Form ID Which You Will Get After Registering With EmailJs
       emailjs.sendForm("service_739uioh", "template_xfi56wr", this).then(
         function () {
           document.getElementById("contact-form").reset();
           document.querySelector(".loader").classList.remove("show");
-          msg.innerHTML = "";
-          msg.innerHTML += "<span class='success-msg'>Email Sent</span>";
+          msg.innerHTML = "<span class='success-msg'>Email Sent</span>";
           msg.classList.add("show");
           setTimeout(() => msg.classList.remove("show"), 2000);
         },
         function (error) {
-          document.querySelector(".loader").classList.toggle("show");
+          document.querySelector(".loader").classList.remove("show");
+          msg.innerHTML =
+            "<span class='error-msg'>Not Sent! Sign Up with EmailJS.</span>";
           msg.classList.add("show");
-          msg.innerHTML +=
-            "<span class='error-msg'>Not Sent ! Sign Up with EmailJS.</span>";
         }
       );
     });
 };
 
 // Navbar Header Sticky While Scroll
-
 function stickyNav() {
   var headerHeight = document.querySelector("#about").offsetHeight / 2;
   var navbar = document.querySelector("header");
@@ -94,11 +86,9 @@ function stickyNav() {
     navbar.classList.remove("header-sticky");
   }
 }
-
 window.addEventListener("scroll", stickyNav);
 
 // Active Link On Page Scroll
-
 const sections = document.querySelectorAll("section[id]");
 
 function scrollTracker() {
@@ -124,15 +114,12 @@ function scrollTracker() {
 window.addEventListener("scroll", scrollTracker);
 
 // Dark and Light Theme Toggle
-
 function isLight() {
   return localStorage.getItem("dark-mode");
 }
-
 function toggleRootClass() {
   document.querySelector("body").classList.toggle("dark");
 }
-
 function toggleLocalStorageItem() {
   if (isLight()) {
     localStorage.removeItem("dark-mode");
@@ -140,34 +127,74 @@ function toggleLocalStorageItem() {
     localStorage.setItem("dark-mode", "set");
   }
 }
-
 if (isLight()) {
   toggleRootClass();
 }
-
 document.querySelector(".theme-toggle").addEventListener("click", () => {
   toggleLocalStorageItem();
   toggleRootClass();
 });
 
-//Scroll Reveal
-
+// Scroll Reveal
 const sr = ScrollReveal({
   reset: true,
   distance: "60px",
   duration: 2500,
   delay: 400,
 });
-
-sr.reveal(".about-intro", {
-  origin: "left",
-});
+sr.reveal(".about-intro", { origin: "left" });
 sr.reveal(
   ".resume-heading,.resume-text,.service-row,.portfolio-wrapper,.contact-general,#contact-form",
-  {
-    origin: "bottom",
-  }
+  { origin: "bottom" }
 );
-sr.reveal(".resume-body", {
-  origin: "top",
-});
+sr.reveal(".resume-body", { origin: "top" });
+
+// 🎉 Career Popup Click Celebration
+const popup = document.querySelector(".career-popup");
+
+if (popup) {
+  popup.addEventListener("click", () => {
+    popup.style.display = "none";
+
+    // 🎊 Confetti burst
+    const duration = 2000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+      });
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+
+    // 🎉 Toast message
+    const congrats = document.createElement("div");
+    congrats.innerText = "🎉 Congrats on your 10-month Nokia Internship!";
+    congrats.style.cssText = `
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1c1e2a;
+      color: #00ffe1;
+      padding: 20px 30px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      z-index: 10001;
+      animation: fadeInOut 2s ease-in-out forwards;
+    `;
+    document.body.appendChild(congrats);
+    setTimeout(() => congrats.remove(), 2000);
+  });
+}
