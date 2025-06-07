@@ -18,6 +18,8 @@
   <body>
     <!--------- Header Begins -------->
     <header>
+      <canvas id="tech-cursor-canvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99999;"></canvas>
+
       <div class="portfolio-container">
         <div class="portfolio-row header-wrap">
           <div class="brand-name">
@@ -73,7 +75,7 @@
       <div class="career-popup" id="careerPopup">
         <p>
           🚀 Career Update: Started a 10-month Software Internship at
-          <strong>Nokia, Bangalore</strong>!
+          <strong>Nokia, Bangalore!</strong>
         </p>
       </div>
       <canvas id="confettiCanvas"></canvas>
@@ -96,7 +98,7 @@
           </div>
           <!-- Greetings and Introduction Ends-->
           <div class="about-image">
-            <img loading="lazy" src="image/profile.png" alt="profile" />
+            <img loading="lazy" src="image/My_Image-Photoroom.png" alt="profile" />
           </div>
         </div>
       </div>
@@ -137,15 +139,16 @@
                 <a href="#contact"> <i></i> Say Hello <strong>👋</strong> </a>
               </div>
 
-              <div class="download-btn">
-                <a
-                  href="https://drive.google.com/file/d/1_R2RRtYX6rQqHmkGtaXeuNtKl9QS8aoL/view?usp=sharing"
-                  download="Pushpanath_M_R_Resume.pdf"
-                  target="_blank"
-                >
-                  <i class="fas fa-file-pdf"></i> Download CV
-                </a>
-              </div>
+<div class="download-btn">
+  <a
+    id="cvDownloadBtn"
+    href="https://drive.google.com/uc?export=download&id=1_R2RRtYX6rQqHmkGtaXeuNtKl9QS8aoL"
+    download="Pushpanath_M_R_Resume.pdf"
+  >
+    <i class="fas fa-file-pdf"></i> Download CV
+  </a>
+</div>
+
             </div>
           </div>
 
@@ -659,5 +662,6 @@
     ></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
   </body>
 </html>

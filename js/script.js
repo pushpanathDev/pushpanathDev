@@ -180,21 +180,124 @@ if (popup) {
 
     // 🎉 Toast message
     const congrats = document.createElement("div");
-    congrats.innerText = "🎉 Congrats on your 10-month Nokia Internship!";
-    congrats.style.cssText = `
-      position: fixed;
-      top: 20%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #1c1e2a;
-      color: #00ffe1;
-      padding: 20px 30px;
-      border-radius: 10px;
-      font-size: 1.2rem;
-      z-index: 10001;
-      animation: fadeInOut 2s ease-in-out forwards;
-    `;
+    congrats.className = "toast-message"; // Add class for CSS styling
+
+    congrats.innerHTML = `
+  <strong>Thank You! 🤗</strong><br>
+  <small>Really appreciate your wishes! 🙌✨</small>
+`;
+
     document.body.appendChild(congrats);
-    setTimeout(() => congrats.remove(), 2000);
+
+    // Remove after 4.5s (matches CSS animation)
+    setTimeout(() => congrats.remove(), 4500);
   });
 }
+
+const downloadBtn = document.getElementById("cvDownloadBtn");
+
+downloadBtn.addEventListener("click", function (e) {
+  const toast = document.createElement("div");
+  toast.innerHTML = `📥 <strong>Downloading Resume...</strong>`;
+  toast.className = "custom-toast";
+  document.body.appendChild(toast);
+
+  // Remove after 4 seconds
+  setTimeout(() => {
+    toast.classList.add("hide-toast");
+  }, 3000);
+  setTimeout(() => toast.remove(), 4000);
+});
+
+document.addEventListener("mousemove", function (e) {
+  const dot = document.createElement("div");
+  dot.className = "magic-dot";
+
+  // Add a little 3D-like skewing based on speed
+  const skewX = (Math.random() - 0.5) * 20;
+  const skewY = (Math.random() - 0.5) * 20;
+
+  dot.style.left = `${e.clientX}px`;
+  dot.style.top = `${e.clientY}px`;
+  dot.style.transform = `translate(-50%, -50%) rotateX(${skewY}deg) rotateY(${skewX}deg) scale(1)`;
+
+  document.body.appendChild(dot);
+
+  // Remove after animation
+  setTimeout(() => {
+    dot.remove();
+  }, 800);
+});
+
+const canvas = document.getElementById("tech-cursor-canvas");
+const ctx = canvas.getContext("2d");
+
+let width = (canvas.width = window.innerWidth);
+let height = (canvas.height = window.innerHeight);
+
+window.addEventListener("resize", () => {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+});
+
+let particles = [];
+
+const techColors = [
+  "rgba(0,255,255,0.9)", // Neon Cyan
+  "rgba(0,255,150,0.9)", // Neon Green
+  "rgba(0,150,255,0.9)", // Electric Blue
+  "rgba(255,255,255,0.9)", // White sparks
+];
+
+class Particle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.size = Math.random() * 2 + 1.5;
+    this.velocityX = (Math.random() - 0.5) * 3;
+    this.velocityY = (Math.random() - 0.5) * 3;
+    this.life = 1;
+    this.color = techColors[Math.floor(Math.random() * techColors.length)];
+  }
+
+  update() {
+    this.x += this.velocityX;
+    this.y += this.velocityY;
+    this.life -= 0.03;
+  }
+
+  draw() {
+    if (this.life <= 0) return;
+    ctx.globalAlpha = this.life;
+    ctx.shadowColor = this.color;
+    ctx.shadowBlur = 10;
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.globalAlpha = 1;
+  }
+}
+
+function addParticles(x, y) {
+  for (let i = 0; i < 6; i++) {
+    particles.push(new Particle(x, y));
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  particles = particles.filter((p) => p.life > 0);
+  particles.forEach((p) => {
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animate);
+}
+
+document.addEventListener("mousemove", (e) => {
+  addParticles(e.clientX, e.clientY);
+});
+
+animate();
