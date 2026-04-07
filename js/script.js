@@ -45,34 +45,107 @@ filterContainer.addEventListener("click", (e) => {
 
 // Send Email
 const msg = document.querySelector(".form-message");
+const contactForm = document.getElementById("contact-form");
+const formLoader = document.querySelector(".loader");
+const EMAILJS_PUBLIC_KEY = "uunnnvA_9NRaqUan0";
+const EMAILJS_SERVICE_ID = "service_739uioh";
+const EMAILJS_TEMPLATE_ID = "template_xfi56wr";
 
-(function () {
-  emailjs.init("uunnnvA_9NRaqUan0");
-})();
+function buildMailtoLink(recipient, name, email, subject, message) {
+  const mailSubject = subject || "Portfolio contact";
+  const mailBody = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n");
 
-window.onload = function () {
-  document
-    .getElementById("contact-form")
-    .addEventListener("submit", function (event) {
-      event.preventDefault();
-      document.querySelector(".loader").classList.add("show");
-      emailjs.sendForm("service_739uioh", "template_xfi56wr", this).then(
-        function () {
-          document.getElementById("contact-form").reset();
-          document.querySelector(".loader").classList.remove("show");
-          msg.innerHTML = "<span class='success-msg'>Email Sent</span>";
-          msg.classList.add("show");
-          setTimeout(() => msg.classList.remove("show"), 2000);
-        },
-        function (error) {
-          document.querySelector(".loader").classList.remove("show");
-          msg.innerHTML =
-            "<span class='error-msg'>Not Sent! Sign Up with EmailJS.</span>";
-          msg.classList.add("show");
-        }
+  return `mailto:${recipient}?subject=${encodeURIComponent(
+    mailSubject,
+  )}&body=${encodeURIComponent(mailBody)}`;
+}
+
+if (typeof emailjs !== "undefined") {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
+
+if (contactForm && msg && formLoader) {
+  contactForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = String(formData.get("name") || "").trim();
+    const email = String(formData.get("email") || "").trim();
+    const subject = String(formData.get("subject") || "").trim();
+    const message = String(formData.get("message") || "").trim();
+
+    if (!name || !email || !subject || !message) {
+      msg.innerHTML =
+        "<span class='error-msg'>Please fill all required fields.</span>";
+      msg.classList.add("show");
+      return;
+    }
+
+    formLoader.classList.add("show");
+
+    if (typeof emailjs === "undefined") {
+      msg.innerHTML =
+        "<span class='error-msg'>Email service is unavailable. Opening your email app instead.</span>";
+      msg.classList.add("show");
+      window.location.href = buildMailtoLink(
+        "pushpanathmr@gmail.com",
+        name,
+        email,
+        subject,
+        message,
       );
-    });
-};
+      formLoader.classList.remove("show");
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name,
+          from_name: name,
+          email,
+          from_email: email,
+          reply_to: email,
+          subject,
+          message,
+        },
+        EMAILJS_PUBLIC_KEY,
+      );
+
+      contactForm.reset();
+      msg.innerHTML =
+        "<span class='success-msg'>Email Sent Successfully</span>";
+      msg.classList.add("show");
+      setTimeout(() => msg.classList.remove("show"), 2500);
+    } catch (error) {
+      console.error("EmailJS send error:", error);
+      const errorText = String(error?.text || error?.message || "");
+      const isScopeError =
+        /gmail_api|insufficient authentication scopes|412/i.test(errorText);
+
+      if (isScopeError) {
+        msg.innerHTML =
+          "<span class='error-msg'>Email service authorization expired. Opening your email app to send the message.</span>";
+        msg.classList.add("show");
+        window.location.href = buildMailtoLink(
+          "pushpanathmr@gmail.com",
+          name,
+          email,
+          subject,
+          message,
+        );
+      } else {
+        msg.innerHTML =
+          "<span class='error-msg'>Message not sent. Please try again or email me directly at pushpanathmr@gmail.com.</span>";
+        msg.classList.add("show");
+      }
+    } finally {
+      formLoader.classList.remove("show");
+    }
+  });
+}
 
 // Navbar Header Sticky While Scroll
 function stickyNav() {
@@ -99,7 +172,7 @@ function scrollTracker() {
     const sectionTop = section.offsetTop - 100;
     const id = section.getAttribute("id");
     const currentNavLink = document.querySelector(
-      `header .portfolio-navbar a[href*="#${id}"]`
+      `header .portfolio-navbar a[href*="#${id}"]`,
     );
     if (
       currentYScroll > sectionTop &&
@@ -145,7 +218,7 @@ const sr = ScrollReveal({
 sr.reveal(".about-intro", { origin: "left" });
 sr.reveal(
   ".resume-heading,.resume-text,.service-row,.portfolio-wrapper,.contact-general,#contact-form",
-  { origin: "bottom" }
+  { origin: "bottom" },
 );
 sr.reveal(".resume-body", { origin: "top" });
 
@@ -195,19 +268,29 @@ if (popup) {
 }
 
 const downloadBtn = document.getElementById("cvDownloadBtn");
+const resumeDownloadUrl =
+  "https://drive.google.com/uc?export=download&id=1sZCUg3V8W-aKVUwfBNA3cbFwoPB_nhQB";
 
-downloadBtn.addEventListener("click", function (e) {
-  const toast = document.createElement("div");
-  toast.innerHTML = `📥 <strong>Downloading Resume...</strong>`;
-  toast.className = "custom-toast";
-  document.body.appendChild(toast);
+if (downloadBtn) {
+  downloadBtn.setAttribute("href", resumeDownloadUrl);
 
-  // Remove after 4 seconds
-  setTimeout(() => {
-    toast.classList.add("hide-toast");
-  }, 3000);
-  setTimeout(() => toast.remove(), 4000);
-});
+  downloadBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const toast = document.createElement("div");
+    toast.innerHTML = `📥 <strong>Downloading Resume...</strong>`;
+    toast.className = "custom-toast";
+    document.body.appendChild(toast);
+
+    // Remove after 4 seconds
+    setTimeout(() => {
+      toast.classList.add("hide-toast");
+    }, 3000);
+    setTimeout(() => toast.remove(), 4000);
+
+    window.location.href = resumeDownloadUrl;
+  });
+}
 
 document.addEventListener("mousemove", function (e) {
   const dot = document.createElement("div");
