@@ -53,15 +53,10 @@ const EMAILJS_TEMPLATE_ID = "template_xfi56wr";
 
 function buildMailtoLink(recipient, name, email, subject, message) {
   const mailSubject = subject || "Portfolio contact";
-  const mailBody = [
-    `Name: ${name}`,
-    `Email: ${email}`,
-    "",
-    message,
-  ].join("\n");
+  const mailBody = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n");
 
   return `mailto:${recipient}?subject=${encodeURIComponent(
-    mailSubject
+    mailSubject,
   )}&body=${encodeURIComponent(mailBody)}`;
 }
 
@@ -80,7 +75,8 @@ if (contactForm && msg && formLoader) {
     const message = String(formData.get("message") || "").trim();
 
     if (!name || !email || !subject || !message) {
-      msg.innerHTML = "<span class='error-msg'>Please fill all required fields.</span>";
+      msg.innerHTML =
+        "<span class='error-msg'>Please fill all required fields.</span>";
       msg.classList.add("show");
       return;
     }
@@ -96,7 +92,7 @@ if (contactForm && msg && formLoader) {
         name,
         email,
         subject,
-        message
+        message,
       );
       formLoader.classList.remove("show");
       return;
@@ -115,19 +111,19 @@ if (contactForm && msg && formLoader) {
           subject,
           message,
         },
-        EMAILJS_PUBLIC_KEY
+        EMAILJS_PUBLIC_KEY,
       );
 
       contactForm.reset();
-      msg.innerHTML = "<span class='success-msg'>Email Sent Successfully</span>";
+      msg.innerHTML =
+        "<span class='success-msg'>Email Sent Successfully</span>";
       msg.classList.add("show");
       setTimeout(() => msg.classList.remove("show"), 2500);
     } catch (error) {
       console.error("EmailJS send error:", error);
       const errorText = String(error?.text || error?.message || "");
-      const isScopeError = /gmail_api|insufficient authentication scopes|412/i.test(
-        errorText
-      );
+      const isScopeError =
+        /gmail_api|insufficient authentication scopes|412/i.test(errorText);
 
       if (isScopeError) {
         msg.innerHTML =
@@ -138,7 +134,7 @@ if (contactForm && msg && formLoader) {
           name,
           email,
           subject,
-          message
+          message,
         );
       } else {
         msg.innerHTML =
@@ -176,7 +172,7 @@ function scrollTracker() {
     const sectionTop = section.offsetTop - 100;
     const id = section.getAttribute("id");
     const currentNavLink = document.querySelector(
-      `header .portfolio-navbar a[href*="#${id}"]`
+      `header .portfolio-navbar a[href*="#${id}"]`,
     );
     if (
       currentYScroll > sectionTop &&
@@ -222,7 +218,7 @@ const sr = ScrollReveal({
 sr.reveal(".about-intro", { origin: "left" });
 sr.reveal(
   ".resume-heading,.resume-text,.service-row,.portfolio-wrapper,.contact-general,#contact-form",
-  { origin: "bottom" }
+  { origin: "bottom" },
 );
 sr.reveal(".resume-body", { origin: "top" });
 

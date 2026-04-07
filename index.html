@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -18,7 +18,16 @@
   <body>
     <!--------- Header Begins -------->
     <header>
-      <canvas id="tech-cursor-canvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 99999;"></canvas>
+      <canvas
+        id="tech-cursor-canvas"
+        style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+          z-index: 99999;
+        "
+      ></canvas>
 
       <div class="portfolio-container">
         <div class="portfolio-row header-wrap">
@@ -98,7 +107,11 @@
           </div>
           <!-- Greetings and Introduction Ends-->
           <div class="about-image">
-            <img loading="lazy" src="image/My_Professional_Pic1.jpg.jpeg" alt="profile" />
+            <img
+              loading="lazy"
+              src="image/My_Professional_Pic1.jpg.jpeg"
+              alt="profile"
+            />
           </div>
         </div>
       </div>
@@ -139,16 +152,15 @@
                 <a href="#contact"> <i></i> Say Hello <strong>👋</strong> </a>
               </div>
 
-<div class="download-btn">
-  <a
-    id="cvDownloadBtn"
-    href="https://drive.google.com/uc?export=download&id=1sZCUg3V8W-aKVUwfBNA3cbFwoPB_nhQB"
-    download="Pushpanath_M_R_Resume.pdf"
-  >
-    <i class="fas fa-file-pdf"></i> Download CV
-  </a>
-</div>
-
+              <div class="download-btn">
+                <a
+                  id="cvDownloadBtn"
+                  href="https://drive.google.com/uc?export=download&id=1sZCUg3V8W-aKVUwfBNA3cbFwoPB_nhQB"
+                  download="Pushpanath_M_R_Resume.pdf"
+                >
+                  <i class="fas fa-file-pdf"></i> Download CV
+                </a>
+              </div>
             </div>
           </div>
 
@@ -629,19 +641,31 @@
               src="image/linkedin.png"
               alt="linkedin"
               class="icon"
-              onclick="window.open('https://www.linkedin.com/in/pushpanath-murali-66600a239/', '_blank')"
+              onclick="
+                window.open(
+                  'https://www.linkedin.com/in/pushpanath-murali-66600a239/',
+                  '_blank',
+                )
+              "
             />
             <img
               src="image/cloud.png"
               alt="google cloud"
               class="icon1"
-              onclick="window.open(' https://www.cloudskillsboost.google/public_profiles/1f177eb8-f37b-43e9-bdd0-ef4a90617dd3', '_blank')"
+              onclick="
+                window.open(
+                  ' https://www.cloudskillsboost.google/public_profiles/1f177eb8-f37b-43e9-bdd0-ef4a90617dd3',
+                  '_blank',
+                )
+              "
             />
             <img
               src="image/github.png"
               alt="github"
               class="icon1"
-              onclick="window.open('https://github.com/pushpanathDev', '_blank')"
+              onclick="
+                window.open('https://github.com/pushpanathDev', '_blank')
+              "
             />
             <!-- <img
               loading="lazy"
@@ -670,6 +694,5 @@
     ></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
   </body>
 </html>
