@@ -4,15 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.lineicons.com/4.0/lineicons.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <meta
+      name="description"
+      content="Portfolio of Pushpanath M R, a Full Stack Developer building cloud-native web apps, AI-driven systems, and IoT solutions."
+    />
+    <meta
+      name="keywords"
+      content="Pushpanath M R, full stack developer, portfolio, React, Next.js, cloud, AI, IoT"
+    />
+    <meta name="author" content="Pushpanath M R" />
+    <meta
+      property="og:title"
+      content="Pushpanath M R | Full Stack Developer Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Explore projects, internships, research publications, and achievements by Pushpanath M R."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="image/Programming.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Pushpanath M R | Full Stack Developer Portfolio"
+    />
+    <meta
+      name="twitter:description"
+      content="Explore cloud, AI, IoT, and full-stack development work by Pushpanath M R."
+    />
     <link rel="icon" type="image" href="/image/Programming.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
 
-    <title>portfolio</title>
+    <title>Pushpanath M R | Full Stack Developer Portfolio</title>
   </head>
 
   <body>
@@ -37,7 +64,7 @@
 
           <!-- Header Navigation Begins-->
 
-          <div class="portfolio-navbar">
+          <div class="portfolio-navbar" id="primary-navigation">
             <ul>
               <li>
                 <a href="#about" class="navbar-link active-link">Home</a>
@@ -56,6 +83,10 @@
               </li>
 
               <li>
+                <a href="#research" class="navbar-link">Research</a>
+              </li>
+
+              <li>
                 <a href="#achievements" class="navbar-link">Achievements</a>
               </li>
 
@@ -66,10 +97,22 @@
           </div>
 
           <!-- Header Navigation Ends-->
-          <div class="navbar-toggle">
+          <button
+            type="button"
+            class="navbar-toggle"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="primary-navigation"
+          >
             <i class="lni lni-grid-alt"></i>
-          </div>
-          <button type="button" class="theme-toggle">
+          </button>
+          <button
+            type="button"
+            class="theme-toggle"
+            aria-label="Switch to dark mode"
+            aria-pressed="false"
+            title="Toggle theme"
+          >
             <i class="lni lni-night"></i>
             <i class="lni lni-sun"></i>
           </button>
@@ -139,9 +182,9 @@
               <p style="text-align: justify">
                 I focus on making cloud infrastructures reliable, optimized, and
                 ready to handle whatever comes next. But beyond the code, what
-                truly drives me is innovation—whether it's IoT, AI, or exploring
+                truly drives me is innovation-whether it's IoT, AI, or exploring
                 new tech that challenges the norm. Always learning, always
-                building—because there’s nothing more exciting than creating
+                building-because there's nothing more exciting than creating
                 something that just works.
               </p>
             </div>
@@ -187,13 +230,13 @@
             <div class="resume-tab active" id="experience">
               <div class="qualification-content">
                 <h4>Software Intern</h4>
-                <h6 class="organization">Nokia - Banglore</h6>
+                <h6 class="organization">Nokia - Bangalore</h6>
                 <span class="years">Present</span>
               </div>
 
               <div class="qualification-content">
                 <h4>Full Stack Developer</h4>
-                <h6 class="organization">CodeStreams Pvt Ltd - Banglore</h6>
+                <h6 class="organization">CodeStreams Pvt Ltd - Bangalore</h6>
                 <span class="years">2023</span>
               </div>
 
@@ -346,10 +389,13 @@
         <div class="portfolio-row filter-wrap">
           <h2><strong>Recent Works</strong></h2>
           <!-- Portfolio Nav Filter Begins-->
-          <div class="portfolio-filter-nav">
+          <div class="portfolio-filter-nav" data-filter-group=".portfolio-item">
             <button class="btn active" data-id="all" type="button">All</button>
             <button class="btn" data-id="development" type="button">
               Development
+            </button>
+            <button class="btn" data-id="internship" type="button">
+              Internships
             </button>
             <button class="btn" data-id="certification" type="button">
               Certifications
@@ -361,120 +407,334 @@
         <!-- Main Portfolio Begins -->
         <div class="portfolio-wrapper">
           <!-- Development Projects -->
-          <div class="portfolio-item development">
-            <img
-              loading="lazy"
-              src="image/Smart_backpack.png"
-              alt="Smart Backpack"
-            />
-            <div class="portfolio-item-content">
-              <div class="product-title">
+          <article class="portfolio-item development">
+            <div class="portfolio-card">
+              <div class="portfolio-media portfolio-placeholder">
+                <img
+                  loading="lazy"
+                  src="image/Iron_Arc_2.png"
+                  alt="Iron Arc Fitness App"
+                  class="project-image"
+                />
+              </div>
+              <div class="portfolio-body">
+                <div class="project-tags">
+                  <span class="project-tag featured">Featured</span>
+                  <span class="project-tag">Full Stack</span>
+                </div>
+                <h4>Iron Arc</h4>
+                <p>
+                  Full-stack fitness tracking app focused on workout logging,
+                  progress monitoring, and user performance insights.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-item development">
+            <a
+              class="portfolio-card"
+              href="https://village-query-app.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="portfolio-media">
+                <img loading="lazy" src="image/Trip_360.png" alt="Trip360" />
+              </div>
+              <div class="portfolio-body">
+                <div class="project-tags">
+                  <span class="project-tag">Web App</span>
+                  <span class="project-tag">Travel Tech</span>
+                </div>
+                <h4>Trip360 - Your Smart Travel Companion</h4>
+                <p>
+                  Helping users discover places, optimize plans, and make better
+                  travel decisions.
+                </p>
+              </div>
+            </a>
+          </article>
+
+          <article class="portfolio-item development">
+            <div class="portfolio-card">
+              <div class="portfolio-media">
+                <img
+                  loading="lazy"
+                  src="image/Smart_BackPack_Patent.png"
+                  alt="Smart Backpack"
+                />
+              </div>
+              <div class="portfolio-body">
+                <div class="project-tags">
+                  <span class="project-tag">IoT</span>
+                  <span class="project-tag">Edge Device</span>
+                </div>
                 <h4>Guardian Pack: The Intelligent Smart Backpack</h4>
-                <p>For Safety and Adventure</p>
+                <p>
+                  Safety-focused connected backpack system designed for smarter
+                  mobility and field use.
+                </p>
               </div>
             </div>
-          </div>
+          </article>
 
-          <div class="portfolio-item development">
-            <img loading="lazy" src="image/AI_chatbot.png" alt="AI Chatbot" />
-            <div class="portfolio-item-content">
-              <div class="product-title">
-                <h4>Inscribe AI: Create, Edit, and Refine with Intelligence</h4>
-                <p>AI-Assisted Content Editor</p>
+          <article class="portfolio-item development">
+            <div class="portfolio-card">
+              <div class="portfolio-media">
+                <img
+                  loading="lazy"
+                  src="image/Customer_Churn_Analysis.png"
+                  alt="Customer Churn Analysis"
+                />
               </div>
-            </div>
-          </div>
-
-          <div class="portfolio-item development">
-            <a href="https://village-query-app.vercel.app/" target="_blank">
-              <img src="image/Trip_360.png" alt="Trip360" />
-              <div class="portfolio-item-content">
-                <div class="product-title">
-                  <h4>Trip360 - Your Smart Travel Companion</h4>
-                  <p>
-                    Helping you explore places, plan better, and travel smarter
-                  </p>
+              <div class="portfolio-body">
+                <div class="project-tags">
+                  <span class="project-tag">Machine Learning</span>
+                  <span class="project-tag">Analytics</span>
                 </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="portfolio-item development">
-            <img
-              loading="lazy"
-              src="image/Customer_Churn_Analysis.png"
-              alt="Customer Churn Analysis"
-            />
-            <div class="portfolio-item-content">
-              <div class="product-title">
                 <h4>Customer Churn Analysis</h4>
-                <p>Predicting customer churn using machine learning</p>
+                <p>
+                  Predictive model to identify churn risks and support proactive
+                  retention strategy.
+                </p>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Certification Projects -->
-          <div class="portfolio-item certification">
-            <a
-              href="https://coursera.org/share/22d8bc3635abf9a45e561bcc978d096d"
-              target="_blank"
-            >
-              <img loading="lazy" src="image/google_ui_ux.png" alt="UI UX" />
-              <div class="portfolio-item-content">
-                <div class="product-title">
-                  <h4>UI-UX Professional</h4>
-                  <p>Google Certification in Figma and Adobe XD</p>
-                </div>
+          <!-- Internship Cards -->
+          <article class="portfolio-item internship">
+            <div class="portfolio-card">
+              <div class="portfolio-media">
+                <img
+                  loading="lazy"
+                  src="image/NOKIA.jpg"
+                  alt="Nokia Internship"
+                />
               </div>
-            </a>
-          </div>
-
-          <div class="portfolio-item certification">
-            <a
-              href="https://coursera.org/share/d1d947b6bc6e42943f46766b6a6f1bf3"
-              target="_blank"
-            >
-              <img
-                loading="lazy"
-                src="image/google_dev_ops.png"
-                alt="Google DevOps"
-              />
-              <div class="portfolio-item-content">
-                <div class="product-title">
-                  <h4>
-                    Preparing for Google Cloud Certification: Cloud DevOps
-                    Engineer
-                  </h4>
-                  <p>Google Certification in Kubernetes and SRE Culture</p>
+              <div class="portfolio-body">
+                <div class="project-tags">
+                  <span class="project-tag">Internship</span>
+                  <span class="project-tag">Current</span>
                 </div>
+                <h4>Software Internship - Nokia, Bangalore</h4>
+                <p>
+                  Developing and validating 5G NR PHY layer features Enhancing
+                  system testing efficiency and performance pipelines
+                </p>
               </div>
-            </a>
-          </div>
+            </div>
+          </article>
 
-          <div class="portfolio-item certification">
+          <article class="portfolio-item internship">
             <a
+              class="portfolio-card"
               href="https://drive.google.com/file/d/1hh5BjgqLYeVVWbKh7QobeXiapISoQ56w/view?usp=sharing"
               target="_blank"
+              rel="noopener noreferrer"
             >
-              <img
-                loading="lazy"
-                src="image/full_stack_developer.png"
-                alt="Full Stack Intern"
-              />
-              <div class="portfolio-item-content">
-                <div class="product-title">
-                  <h4>Full Stack Development Intern</h4>
-                  <p>At CodeStreams Pvt Ltd</p>
+              <div class="portfolio-media">
+                <img
+                  loading="lazy"
+                  src="image/full_stack_developer.png"
+                  alt="Full Stack Internship"
+                />
+              </div>
+              <div class="portfolio-body">
+                <div class="project-tags">
+                  <span class="project-tag">Internship</span>
+                  <span class="project-tag">CodeStreams</span>
                 </div>
+                <h4>Full Stack Development Internship</h4>
+                <p>
+                  Built and improved product features across frontend and
+                  backend modules at CodeStreams Pvt Ltd.
+                </p>
               </div>
             </a>
-          </div>
+          </article>
+
+          <!-- Certification Projects -->
+          <article class="portfolio-item certification">
+            <a
+              class="portfolio-card"
+              href="https://coursera.org/share/22d8bc3635abf9a45e561bcc978d096d"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="portfolio-media">
+                <img loading="lazy" src="image/google_ui_ux.png" alt="UI UX" />
+              </div>
+              <div class="portfolio-body">
+                <div class="project-tags">
+                  <span class="project-tag">Certification</span>
+                  <span class="project-tag">Design</span>
+                </div>
+                <h4>UI-UX Professional</h4>
+                <p>Google certification in Figma and Adobe XD workflows.</p>
+              </div>
+            </a>
+          </article>
+
+          <article class="portfolio-item certification">
+            <a
+              class="portfolio-card"
+              href="https://coursera.org/share/d1d947b6bc6e42943f46766b6a6f1bf3"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="portfolio-media">
+                <img
+                  loading="lazy"
+                  src="image/google_dev_ops.png"
+                  alt="Google Cloud DevOps"
+                />
+              </div>
+              <div class="portfolio-body">
+                <div class="project-tags">
+                  <span class="project-tag">Certification</span>
+                  <span class="project-tag">Cloud DevOps</span>
+                </div>
+                <h4>Google Cloud DevOps Engineer Preparation</h4>
+                <p>
+                  Focused on Kubernetes, reliability engineering, and cloud
+                  operations best practices.
+                </p>
+              </div>
+            </a>
+          </article>
         </div>
         <!-- Main Portfolio Ends -->
       </div>
     </section>
 
     <!-- Project Section Ends-->
+
+    <!-- Research and Publication Section Begins -->
+    <section id="research">
+      <div class="portfolio-container">
+        <div class="portfolio-row filter-wrap">
+          <h2><strong>Research and Publication</strong></h2>
+          <div class="portfolio-filter-nav" data-filter-group=".research-card">
+            <button class="btn active" data-id="all" type="button">All</button>
+            <button class="btn" data-id="publication" type="button">
+              Publications
+            </button>
+            <button class="btn" data-id="blog" type="button">Blogs</button>
+          </div>
+        </div>
+
+        <div class="research-ip-highlight">
+          <div class="research-ip-media">
+            <img
+              loading="lazy"
+              src="image/Smart_BackPack_Patent.png"
+              alt="Smart Backpack Patent"
+            />
+          </div>
+          <div class="research-ip-content">
+            <span class="research-type patent">IP Highlight</span>
+            <h4>Smart Backpack (Guardian Bag) - Patent Record</h4>
+            <div class="research-ip-meta">
+              <div class="research-ip-meta-item">
+                <span>Patent Number</span>
+                <strong>22/2025</strong>
+              </div>
+              <div class="research-ip-meta-item">
+                <span>Application Number</span>
+                <strong>202541046919</strong>
+              </div>
+              <div class="research-ip-meta-item">
+                <span>College</span>
+                <strong>Vellore Institute of Technology, Chennai</strong>
+              </div>
+            </div>
+            <p class="research-ip-summary">
+              Guardian Bag and this patent refer to the same core innovation: an
+              intelligent smart-backpack system focused on safety, real-time
+              monitoring, and connected alerts for practical day-to-day
+              mobility. This record represents the formal IP milestone of that
+              project at Vellore Institute of Technology, Chennai.
+            </p>
+          </div>
+        </div>
+
+        <div class="research-groups">
+          <div class="research-group">
+            <h3 class="research-group-title">Publications</h3>
+            <div class="portfolio-wrapper research-wrapper">
+              <article class="research-card publication">
+                <a
+                  class="research-item"
+                  href="https://www.linkedin.com/posts/pushpanathmr_aiforgood-smartvillages-edgeai-share-7435932347914678272-bbVb?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtEly4B5yr29eB-rD0bjGQfxlaa-21YFPA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="portfolio-media portfolio-placeholder">
+                    <img
+                      loading="lazy"
+                      src="image/Research_Paper.png"
+                      alt="Publication"
+                      class="publication-image"
+                    />
+                  </div>
+                  <div class="research-content">
+                    <span class="research-type">Publication</span>
+                    <h4>
+                      AI-Driven Query Management and Issue Resolution System for
+                      Smart Villages
+                    </h4>
+                    <p>
+                      Conference publication on an AI-powered grievance
+                      redressal system for smart villages. It uses DistilBERT
+                      and EfficientNet to classify, verify, and prioritize
+                      citizen issues. Built for multilingual,
+                      resource-constrained deployments, it improves
+                      transparency, reduces duplicates, and accelerates response
+                      time.
+                    </p>
+                  </div>
+                </a>
+              </article>
+            </div>
+          </div>
+
+          <div class="research-group">
+            <h3 class="research-group-title">Blogs</h3>
+            <div class="portfolio-wrapper research-wrapper">
+              <article class="research-card blog">
+                <a
+                  class="research-item"
+                  href="https://medium.com/@pushpanathmr/the-question-that-stuck-with-me-after-my-first-ieee-conference-why-not-use-generative-ai-cb7ad59ea8bf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="portfolio-media">
+                    <img
+                      loading="lazy"
+                      src="image/Medium_Blog.png"
+                      alt="Medium Blog"
+                    />
+                  </div>
+                  <div class="research-content">
+                    <span class="research-type">Blog</span>
+                    <h4>
+                      The Question That Stuck With Me After My First IEEE
+                      Conference
+                    </h4>
+                    <p>
+                      Medium blog on why lightweight AI can outperform
+                      generative AI in real-world, resource-constrained rural
+                      deployments.
+                    </p>
+                  </div>
+                </a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Research and Publication Section Ends -->
 
     <!--  Achievements Section Begins-->
     <section id="achievements">
@@ -487,6 +747,7 @@
               <a
                 href="https://www.cloudskillsboost.google/public_profiles/1f177eb8-f37b-43e9-bdd0-ef4a90617dd3"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <img
                   loading="lazy"
@@ -502,6 +763,7 @@
                     <p>
                       Season - 2024 | Diamond League | 33 Badges | 74,285 points
                     </p>
+                    <p class="tap-hint">Tap card to open the full profile.</p>
                   </div>
                 </div>
               </a>
@@ -521,20 +783,22 @@
           <h2><strong>Get In Touch</strong></h2>
           <div class="contact-card">
             <div class="icon">
-              <i class="lni lni-map-marker"></i>
+              <i class="lni lni-phone-set"></i>
             </div>
             <div class="contact-content">
               <h5>Phone</h5>
-              <span>+91 9600720603</span>
+              <a href="tel:+919600720603" aria-label="Call +91 9600720603"
+                >+91 9600720603</a
+              >
             </div>
           </div>
           <div class="contact-card">
             <div class="icon">
-              <i class="lni lni-phone-set"></i>
+              <i class="lni lni-map-marker"></i>
             </div>
             <div class="contact-content">
               <h5>Location</h5>
-              <span>VIT Campus , Chennai</span>
+              <span>Chennai</span>
             </div>
           </div>
 
@@ -544,7 +808,11 @@
             </div>
             <div class="contact-content">
               <h5>Email</h5>
-              <span>pushpanathmr@gmail.com</span>
+              <a
+                href="mailto:pushpanathmr@gmail.com"
+                aria-label="Email pushpanathmr@gmail.com"
+                >pushpanathmr@gmail.com</a
+              >
             </div>
           </div>
         </div>
@@ -624,7 +892,7 @@
         <div class="portfolio-row footer-wrap">
           <div class="copyright-text">
             <p>
-              © Copyright 2024 by <strong>Pushpanath</strong>. All Rights
+              © Copyright 2026 by <strong>Pushpanath</strong>. All Rights
               Reserved
             </p>
           </div>
@@ -636,37 +904,33 @@
             <li><a href="#">LinkedIn</a></li>
           </ul> -->
           <div id="social-container">
-            <img
-              loading="lazy"
-              src="image/linkedin.png"
-              alt="linkedin"
-              class="icon"
-              onclick="
-                window.open(
-                  'https://www.linkedin.com/in/pushpanath-murali-66600a239/',
-                  '_blank',
-                )
-              "
-            />
-            <img
-              src="image/cloud.png"
-              alt="google cloud"
-              class="icon1"
-              onclick="
-                window.open(
-                  ' https://www.cloudskillsboost.google/public_profiles/1f177eb8-f37b-43e9-bdd0-ef4a90617dd3',
-                  '_blank',
-                )
-              "
-            />
-            <img
-              src="image/github.png"
-              alt="github"
-              class="icon1"
-              onclick="
-                window.open('https://github.com/pushpanathDev', '_blank')
-              "
-            />
+            <a
+              class="social-link linkedin-link"
+              href="https://www.linkedin.com/in/pushpanathmr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open LinkedIn profile"
+            >
+              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+            </a>
+            <a
+              class="social-link cloud-link"
+              href="https://www.cloudskillsboost.google/public_profiles/1f177eb8-f37b-43e9-bdd0-ef4a90617dd3"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Google Cloud Skills Boost profile"
+            >
+              <i class="lni lni-google-cloud" aria-hidden="true"></i>
+            </a>
+            <a
+              class="social-link github-link"
+              href="https://github.com/pushpanathDev"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open GitHub profile"
+            >
+              <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
             <!-- <img
               loading="lazy"
               src="image/twitter.png"

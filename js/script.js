@@ -1,45 +1,122 @@
 // Toggle Visibility Of Navbar When Button Clicked
 const navToggle = document.querySelector(".navbar-toggle");
-navToggle.addEventListener("click", function () {
-  document.querySelector(".portfolio-navbar").classList.toggle("show");
-});
+const portfolioNavbar = document.querySelector(".portfolio-navbar");
+
+if (navToggle && portfolioNavbar) {
+  navToggle.addEventListener("click", function (event) {
+    event.stopPropagation();
+    const isOpen = portfolioNavbar.classList.toggle("show");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  portfolioNavbar.addEventListener("click", (event) => {
+    const clickedLink = event.target.closest("a.navbar-link");
+    if (clickedLink) {
+      portfolioNavbar.classList.remove("show");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    const clickedInsideMenu = portfolioNavbar.contains(event.target);
+    const clickedToggle = navToggle.contains(event.target);
+    if (!clickedInsideMenu && !clickedToggle) {
+      portfolioNavbar.classList.remove("show");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+}
 
 // Tab Interface For Resume
 const resumeHeading = document.querySelector(".resume-heading");
 const resumeTabs = document.querySelectorAll(".resume-tab");
 
-resumeHeading.onclick = (event) => {
-  event.preventDefault();
-  const clickedItemId = event.target.dataset.id;
-  if (clickedItemId) {
-    resumeHeading.querySelector(".active").classList.remove("active");
+if (resumeHeading) {
+  resumeHeading.onclick = (event) => {
+    event.preventDefault();
+    const clickedItemId = event.target.dataset.id;
+    if (!clickedItemId) {
+      return;
+    }
+
+    const currentActive = resumeHeading.querySelector(".active");
+    if (currentActive) {
+      currentActive.classList.remove("active");
+    }
     event.target.classList.add("active");
 
     resumeTabs.forEach((tab) => {
       tab.classList.remove("active");
     });
     const correspondingTab = document.getElementById(clickedItemId);
-    correspondingTab.classList.add("active");
-  }
-};
-
-// Portfolio Filter
-const filterContainer = document.querySelector(".portfolio-filter-nav");
-const galleryItems = document.querySelectorAll(".portfolio-item");
-
-filterContainer.addEventListener("click", (e) => {
-  e.preventDefault();
-  filterContainer.querySelector(".active").classList.remove("active");
-  e.target.classList.add("active");
-  const filterValue = e.target.getAttribute("data-id");
-  galleryItems.forEach((item) => {
-    if (item.classList.contains(filterValue) || filterValue === "all") {
-      item.classList.remove("hide");
-      item.classList.add("show");
-    } else {
-      item.classList.remove("show");
-      item.classList.add("hide");
+    if (correspondingTab) {
+      correspondingTab.classList.add("active");
     }
+  };
+}
+
+// Portfolio and Research Filters
+const filterGroups = document.querySelectorAll(
+  ".portfolio-filter-nav[data-filter-group]",
+);
+
+filterGroups.forEach((filterContainer) => {
+  const selector = filterContainer.getAttribute("data-filter-group");
+  if (!selector) {
+    return;
+  }
+
+  const galleryItems = document.querySelectorAll(selector);
+  if (!galleryItems.length) {
+    return;
+  }
+
+  const applyFilter = (filterValue) => {
+    galleryItems.forEach((item) => {
+      if (item.classList.contains(filterValue) || filterValue === "all") {
+        item.classList.remove("hide");
+        item.classList.add("show");
+      } else {
+        item.classList.remove("show");
+        item.classList.add("hide");
+      }
+    });
+
+    if (selector === ".research-card") {
+      document
+        .querySelectorAll("#research .research-group")
+        .forEach((group) => {
+          const hasVisibleCard =
+            group.querySelectorAll(".research-card:not(.hide)").length > 0;
+          group.style.display = hasVisibleCard ? "" : "none";
+        });
+    }
+  };
+
+  const initiallyActiveButton = filterContainer.querySelector(
+    "button[data-id].active",
+  );
+  if (initiallyActiveButton) {
+    applyFilter(initiallyActiveButton.getAttribute("data-id") || "all");
+  } else {
+    applyFilter("all");
+  }
+
+  filterContainer.addEventListener("click", (event) => {
+    const targetButton = event.target.closest("button[data-id]");
+    if (!targetButton) {
+      return;
+    }
+
+    event.preventDefault();
+    const activeButton = filterContainer.querySelector(".active");
+    if (activeButton) {
+      activeButton.classList.remove("active");
+    }
+
+    targetButton.classList.add("active");
+    const filterValue = targetButton.getAttribute("data-id");
+    applyFilter(filterValue);
   });
 });
 
@@ -174,6 +251,11 @@ function scrollTracker() {
     const currentNavLink = document.querySelector(
       `header .portfolio-navbar a[href*="#${id}"]`,
     );
+
+    if (!currentNavLink) {
+      return;
+    }
+
     if (
       currentYScroll > sectionTop &&
       currentYScroll <= sectionTop + sectionHeight
@@ -200,36 +282,115 @@ function toggleLocalStorageItem() {
     localStorage.setItem("dark-mode", "set");
   }
 }
+
+const themeToggleButton = document.querySelector(".theme-toggle");
+
+function syncThemeToggleAccessibility() {
+  if (!themeToggleButton) {
+    return;
+  }
+
+  const isDarkMode = document.body.classList.contains("dark");
+  themeToggleButton.setAttribute("aria-pressed", String(isDarkMode));
+  themeToggleButton.setAttribute(
+    "aria-label",
+    isDarkMode ? "Switch to light mode" : "Switch to dark mode",
+  );
+}
+
 if (isLight()) {
   toggleRootClass();
 }
-document.querySelector(".theme-toggle").addEventListener("click", () => {
-  toggleLocalStorageItem();
-  toggleRootClass();
-});
+
+syncThemeToggleAccessibility();
+
+if (themeToggleButton) {
+  themeToggleButton.addEventListener("click", () => {
+    toggleLocalStorageItem();
+    toggleRootClass();
+    syncThemeToggleAccessibility();
+  });
+}
 
 // Scroll Reveal
-const sr = ScrollReveal({
-  reset: true,
-  distance: "60px",
-  duration: 2500,
-  delay: 400,
-});
-sr.reveal(".about-intro", { origin: "left" });
-sr.reveal(
-  ".resume-heading,.resume-text,.service-row,.portfolio-wrapper,.contact-general,#contact-form",
-  { origin: "bottom" },
-);
-sr.reveal(".resume-body", { origin: "top" });
+if (typeof ScrollReveal !== "undefined") {
+  const sr = ScrollReveal({
+    reset: false,
+    distance: "28px",
+    duration: 850,
+    delay: 120,
+    viewFactor: 0.06,
+    cleanup: true,
+  });
 
-// 🎉 Career Popup Click Celebration
+  sr.reveal(".about-intro", { origin: "left" });
+  sr.reveal(
+    ".resume-heading,.resume-text,.skill-card,.portfolio-item,.research-card",
+    { origin: "bottom", interval: 90 },
+  );
+  sr.reveal(".resume-body", { origin: "top" });
+}
+
+// Safety net: ensure bottom sections are visible even after rapid scrolls.
+const criticalVisibilitySelectors = [
+  "#projects .portfolio-wrapper",
+  "#research .research-groups",
+  "#research .research-card",
+  "#achievements .portfolio-wrapper",
+  "#achievements .achievements-item",
+  "#contact .contact-general",
+  "#contact #contact-form",
+];
+
+function clearRevealInlineStyles(element) {
+  const inlineStyle = element.getAttribute("style");
+  if (!inlineStyle || !/(opacity|visibility|transform)/i.test(inlineStyle)) {
+    return;
+  }
+
+  element.style.removeProperty("opacity");
+  element.style.removeProperty("visibility");
+  element.style.removeProperty("transform");
+
+  const remainingStyle = element.getAttribute("style");
+  if (!remainingStyle || !remainingStyle.trim()) {
+    element.removeAttribute("style");
+  }
+}
+
+function ensureCriticalSectionsVisible() {
+  const viewportThreshold = window.innerHeight + 160;
+
+  criticalVisibilitySelectors.forEach((selector) => {
+    document.querySelectorAll(selector).forEach((element) => {
+      const rect = element.getBoundingClientRect();
+      if (rect.top <= viewportThreshold) {
+        clearRevealInlineStyles(element);
+      }
+    });
+  });
+}
+
+window.addEventListener("scroll", ensureCriticalSectionsVisible, {
+  passive: true,
+});
+window.addEventListener("resize", ensureCriticalSectionsVisible);
+window.addEventListener("load", () => {
+  requestAnimationFrame(ensureCriticalSectionsVisible);
+  setTimeout(ensureCriticalSectionsVisible, 300);
+  setTimeout(ensureCriticalSectionsVisible, 1200);
+});
+
+ensureCriticalSectionsVisible();
+
+// ðŸŽ‰ Career Popup Click Celebration
 const popup = document.querySelector(".career-popup");
 
 if (popup) {
   popup.addEventListener("click", () => {
     popup.style.display = "none";
 
-    // 🎊 Confetti burst
+    // ðŸŽŠ Confetti burst
     const duration = 2000;
     const end = Date.now() + duration;
 
@@ -251,13 +412,13 @@ if (popup) {
       }
     })();
 
-    // 🎉 Toast message
+    // ðŸŽ‰ Toast message
     const congrats = document.createElement("div");
     congrats.className = "toast-message"; // Add class for CSS styling
 
     congrats.innerHTML = `
-  <strong>Thank You! 🤗</strong><br>
-  <small>Really appreciate your wishes! 🙌✨</small>
+  <strong>Thank You! ðŸ¤—</strong><br>
+  <small>Really appreciate your wishes! ðŸ™Œâœ¨</small>
 `;
 
     document.body.appendChild(congrats);
@@ -270,6 +431,7 @@ if (popup) {
 const downloadBtn = document.getElementById("cvDownloadBtn");
 const resumeDownloadUrl =
   "https://drive.google.com/uc?export=download&id=1sZCUg3V8W-aKVUwfBNA3cbFwoPB_nhQB";
+let isResumeDownloadTriggered = false;
 
 if (downloadBtn) {
   downloadBtn.setAttribute("href", resumeDownloadUrl);
@@ -277,110 +439,175 @@ if (downloadBtn) {
   downloadBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
+    if (isResumeDownloadTriggered) {
+      return;
+    }
+    isResumeDownloadTriggered = true;
+
+    const existingToast = document.querySelector(".custom-toast");
+    if (existingToast) {
+      existingToast.remove();
+    }
+
     const toast = document.createElement("div");
-    toast.innerHTML = `📥 <strong>Downloading Resume...</strong>`;
+    toast.innerHTML = `
+      <div class="toast-icon" aria-hidden="true">
+        <i class="fas fa-download"></i>
+      </div>
+      <div class="toast-content">
+        <p class="toast-title">Resume Download Started</p>
+        <p class="toast-subtitle">Your CV download will start now.</p>
+        <span class="toast-progress"></span>
+      </div>
+      <button type="button" class="toast-close" aria-label="Dismiss">
+        <i class="fas fa-times"></i>
+      </button>
+    `;
     toast.className = "custom-toast";
     document.body.appendChild(toast);
 
-    // Remove after 4 seconds
-    setTimeout(() => {
+    const closeToast = () => {
       toast.classList.add("hide-toast");
+      setTimeout(() => toast.remove(), 360);
+    };
+
+    const closeButton = toast.querySelector(".toast-close");
+    if (closeButton) {
+      closeButton.addEventListener("click", closeToast);
+    }
+
+    // Remove after a short display window
+    setTimeout(() => {
+      if (document.body.contains(toast)) {
+        closeToast();
+      }
+    }, 3200);
+
+    // Single download path to avoid duplicate parallel downloads.
+    window.location.assign(resumeDownloadUrl);
+
+    // Safety reset in case navigation is blocked by the browser.
+    setTimeout(() => {
+      isResumeDownloadTriggered = false;
     }, 3000);
-    setTimeout(() => toast.remove(), 4000);
-
-    window.location.href = resumeDownloadUrl;
   });
 }
 
-document.addEventListener("mousemove", function (e) {
-  const dot = document.createElement("div");
-  dot.className = "magic-dot";
+const cursorCanvas = document.getElementById("tech-cursor-canvas");
+const supportsFinePointer = window.matchMedia(
+  "(hover: hover) and (pointer: fine)",
+).matches;
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+).matches;
+const enableCursorEffects = supportsFinePointer && !prefersReducedMotion;
 
-  // Add a little 3D-like skewing based on speed
-  const skewX = (Math.random() - 0.5) * 20;
-  const skewY = (Math.random() - 0.5) * 20;
+if (enableCursorEffects && cursorCanvas) {
+  document.body.classList.add("cursor-effects-enabled");
 
-  dot.style.left = `${e.clientX}px`;
-  dot.style.top = `${e.clientY}px`;
-  dot.style.transform = `translate(-50%, -50%) rotateX(${skewY}deg) rotateY(${skewX}deg) scale(1)`;
+  let lastDotAt = 0;
+  document.addEventListener("mousemove", function (event) {
+    const now = performance.now();
+    if (now - lastDotAt < 28) {
+      return;
+    }
+    lastDotAt = now;
 
-  document.body.appendChild(dot);
+    const dot = document.createElement("div");
+    dot.className = "magic-dot";
 
-  // Remove after animation
-  setTimeout(() => {
-    dot.remove();
-  }, 800);
-});
+    const skewX = (Math.random() - 0.5) * 20;
+    const skewY = (Math.random() - 0.5) * 20;
 
-const canvas = document.getElementById("tech-cursor-canvas");
-const ctx = canvas.getContext("2d");
+    dot.style.left = `${event.clientX}px`;
+    dot.style.top = `${event.clientY}px`;
+    dot.style.transform = `translate(-50%, -50%) rotateX(${skewY}deg) rotateY(${skewX}deg) scale(1)`;
 
-let width = (canvas.width = window.innerWidth);
-let height = (canvas.height = window.innerHeight);
+    document.body.appendChild(dot);
 
-window.addEventListener("resize", () => {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-});
-
-let particles = [];
-
-const techColors = [
-  "rgba(0,255,255,0.9)", // Neon Cyan
-  "rgba(0,255,150,0.9)", // Neon Green
-  "rgba(0,150,255,0.9)", // Electric Blue
-  "rgba(255,255,255,0.9)", // White sparks
-];
-
-class Particle {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-    this.size = Math.random() * 2 + 1.5;
-    this.velocityX = (Math.random() - 0.5) * 3;
-    this.velocityY = (Math.random() - 0.5) * 3;
-    this.life = 1;
-    this.color = techColors[Math.floor(Math.random() * techColors.length)];
-  }
-
-  update() {
-    this.x += this.velocityX;
-    this.y += this.velocityY;
-    this.life -= 0.03;
-  }
-
-  draw() {
-    if (this.life <= 0) return;
-    ctx.globalAlpha = this.life;
-    ctx.shadowColor = this.color;
-    ctx.shadowBlur = 10;
-    ctx.fillStyle = this.color;
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.globalAlpha = 1;
-  }
-}
-
-function addParticles(x, y) {
-  for (let i = 0; i < 6; i++) {
-    particles.push(new Particle(x, y));
-  }
-}
-
-function animate() {
-  ctx.clearRect(0, 0, width, height);
-  particles = particles.filter((p) => p.life > 0);
-  particles.forEach((p) => {
-    p.update();
-    p.draw();
+    setTimeout(() => {
+      dot.remove();
+    }, 800);
   });
-  requestAnimationFrame(animate);
+
+  const ctx = cursorCanvas.getContext("2d");
+
+  if (ctx) {
+    let width = (cursorCanvas.width = window.innerWidth);
+    let height = (cursorCanvas.height = window.innerHeight);
+
+    window.addEventListener("resize", () => {
+      width = cursorCanvas.width = window.innerWidth;
+      height = cursorCanvas.height = window.innerHeight;
+    });
+
+    let particles = [];
+
+    const techColors = [
+      "rgba(0,255,255,0.9)",
+      "rgba(0,255,150,0.9)",
+      "rgba(0,150,255,0.9)",
+      "rgba(255,255,255,0.9)",
+    ];
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 2 + 1.5;
+        this.velocityX = (Math.random() - 0.5) * 3;
+        this.velocityY = (Math.random() - 0.5) * 3;
+        this.life = 1;
+        this.color = techColors[Math.floor(Math.random() * techColors.length)];
+      }
+
+      update() {
+        this.x += this.velocityX;
+        this.y += this.velocityY;
+        this.life -= 0.03;
+      }
+
+      draw() {
+        if (this.life <= 0) return;
+        ctx.globalAlpha = this.life;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 10;
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    function addParticles(x, y) {
+      for (let i = 0; i < 4; i++) {
+        particles.push(new Particle(x, y));
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles = particles.filter((particle) => particle.life > 0);
+      particles.forEach((particle) => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    let lastParticleAt = 0;
+    document.addEventListener("mousemove", (event) => {
+      const now = performance.now();
+      if (now - lastParticleAt < 20) {
+        return;
+      }
+      lastParticleAt = now;
+      addParticles(event.clientX, event.clientY);
+    });
+
+    animate();
+  }
+} else if (cursorCanvas) {
+  cursorCanvas.style.display = "none";
 }
-
-document.addEventListener("mousemove", (e) => {
-  addParticles(e.clientX, e.clientY);
-});
-
-animate();
