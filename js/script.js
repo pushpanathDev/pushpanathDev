@@ -1,3 +1,34 @@
+// Initialize Lenis Smooth Scroll
+let lenis;
+if (typeof Lenis !== "undefined") {
+  lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // fluid easeOutExponential profile
+    direction: "vertical",
+    gestureDirection: "vertical",
+    smooth: true,
+    autoRaf: true,
+  });
+
+  // Smooth scroll to anchor links using Lenis scrollTo
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest('a[href^="#"]');
+    if (!target) return;
+
+    const id = target.getAttribute("href");
+    if (id === "#") return;
+
+    const el = document.querySelector(id);
+    if (el) {
+      e.preventDefault();
+      lenis.scrollTo(el, {
+        duration: 1.2,
+        offset: -100, // Matches the sticky header offset
+      });
+    }
+  });
+}
+
 // Toggle Visibility Of Navbar When Button Clicked
 const navToggle = document.querySelector(".navbar-toggle");
 const portfolioNavbar = document.querySelector(".portfolio-navbar");
