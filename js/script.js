@@ -461,7 +461,7 @@ if (popup) {
 
 const downloadBtn = document.getElementById("cvDownloadBtn");
 const resumeDownloadUrl =
-  "https://drive.google.com/uc?export=download&id=1sZCUg3V8W-aKVUwfBNA3cbFwoPB_nhQB";
+  "https://drive.google.com/uc?export=download&id=1QwHmoBadqPCHR9zFyaj92cghE3JnlxBH";
 let isResumeDownloadTriggered = false;
 
 if (downloadBtn) {
