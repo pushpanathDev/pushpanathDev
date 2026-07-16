@@ -487,7 +487,7 @@ if (downloadBtn) {
       </div>
       <div class="toast-content">
         <p class="toast-title">Resume Download Started</p>
-        <p class="toast-subtitle">Your CV download will start now.</p>
+        <p class="toast-subtitle">Resume download will start now.</p>
         <span class="toast-progress"></span>
       </div>
       <button type="button" class="toast-close" aria-label="Dismiss">
