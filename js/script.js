@@ -414,50 +414,50 @@ window.addEventListener("load", () => {
 
 ensureCriticalSectionsVisible();
 
-// ðŸŽ‰ Career Popup Click Celebration
-const popup = document.querySelector(".career-popup");
+// // ðŸŽ‰ Career Popup Click Celebration
+// const popup = document.querySelector(".career-popup");
 
-if (popup) {
-  popup.addEventListener("click", () => {
-    popup.style.display = "none";
+// if (popup) {
+//   popup.addEventListener("click", () => {
+//     popup.style.display = "none";
 
-    // ðŸŽŠ Confetti burst
-    const duration = 2000;
-    const end = Date.now() + duration;
+//     // ðŸŽŠ Confetti burst
+//     const duration = 2000;
+//     const end = Date.now() + duration;
 
-    (function frame() {
-      confetti({
-        particleCount: 5,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 },
-      });
-      confetti({
-        particleCount: 5,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 },
-      });
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
-    })();
+//     (function frame() {
+//       confetti({
+//         particleCount: 5,
+//         angle: 60,
+//         spread: 55,
+//         origin: { x: 0 },
+//       });
+//       confetti({
+//         particleCount: 5,
+//         angle: 120,
+//         spread: 55,
+//         origin: { x: 1 },
+//       });
+//       if (Date.now() < end) {
+//         requestAnimationFrame(frame);
+//       }
+//     })();
 
-    // ðŸŽ‰ Toast message
-    const congrats = document.createElement("div");
-    congrats.className = "toast-message"; // Add class for CSS styling
+//     // ðŸŽ‰ Toast message
+//     const congrats = document.createElement("div");
+//     congrats.className = "toast-message"; // Add class for CSS styling
 
-    congrats.innerHTML = `
-  <strong>Thank You! ðŸ¤—</strong><br>
-  <small>Really appreciate your wishes! ðŸ™Œâœ¨</small>
-`;
+//     congrats.innerHTML = `
+//   <strong>Thank You! ðŸ¤—</strong><br>
+//   <small>Really appreciate your wishes! ðŸ™Œâœ¨</small>
+// `;
 
-    document.body.appendChild(congrats);
+//     document.body.appendChild(congrats);
 
-    // Remove after 4.5s (matches CSS animation)
-    setTimeout(() => congrats.remove(), 4500);
-  });
-}
+//     // Remove after 4.5s (matches CSS animation)
+//     setTimeout(() => congrats.remove(), 4500);
+//   });
+// }
 
 const downloadBtn = document.getElementById("cvDownloadBtn");
 const resumeDownloadUrl =
