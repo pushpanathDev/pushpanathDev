@@ -3,7 +3,7 @@
 # Hi, I'm Pushpanath M R 👋
 ### AI Engineer · Full-Stack Developer · 5G Systems Intern
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=00D9FF&center=true&vCenter=true&width=600&lines=Building+Intelligent+Systems+with+AI+%26+RAG;5G+L1%2FPHY+Engineer+%40+Nokia;Published+Patent+Holder+%F0%9F%93%9C;MTech+Software+Engineering+%40+VIT+Chennai)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=00D9FF&center=true&vCenter=true&width=600&lines=Building+Intelligent+Systems+with+AI+%26+RAG;5G+L1%2FPHY+Engineer+Intern+%40+Nokia;Published+Patent+Holder+%F0%9F%93%9C;MTech+Software+Engineering+%40+VIT+Chennai)](https://git.io/typing-svg)
 
 <div align="center">
 
@@ -43,7 +43,7 @@ class Pushpanath:
 | Project | Description | Stack |
 |--------|-------------|-------|
 | 🧠 [**DevMind**](https://github.com/pushpanathDev/DevMind) | Codebase Intelligence Platform using Hybrid RAG (vector + BM25) | TypeScript · LLM · RAG |
-| 📊 [**DataPulseAI**](https://github.com/pushpanathDev/DataPulseAI) | Spreadsheet-to-insights web app powered by AI | TypeScript · AI |
+| 📊 [**Query Sheet**](https://github.com/pushpanathDev/QuerySheet) | Spreadsheet-to-insights web app powered by AI | TypeScript · AI |
 | 💪 [**Iron Arc**](https://github.com/pushpanathDev/Iron_Arc) | Cross-platform AI fitness tracking app | TypeScript · React Native |
 
 </div>
