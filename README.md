@@ -5,9 +5,13 @@
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&pause=1000&color=00D9FF&center=true&vCenter=true&width=600&lines=Building+Intelligent+Systems+with+AI+%26+RAG;5G+L1%2FPHY+Engineer+%40+Nokia;Published+Patent+Holder+%F0%9F%93%9C;MTech+Software+Engineering+%40+VIT+Chennai)](https://git.io/typing-svg)
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/pushpanathmr)
-[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=vercel&logoColor=white)](https://pushpanath-dev.vercel.app)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/pushpanathDev)
+<div align="center">
+
+<a href="https://linkedin.com/in/pushpanathmr" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>&nbsp;
+<a href="https://pushpanath.dev" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio"></a>&nbsp;
+<a href="https://github.com/pushpanathDev" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"></a>
+
+</div>
 
 </div>
 
@@ -82,16 +86,28 @@ class Pushpanath:
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=pushpanathDev&show_icons=true&theme=tokyonight&hide_border=true&count_private=true" height="165"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=pushpanathDev&layout=compact&theme=tokyonight&hide_border=true" height="165"/>
+[![GitHub followers](https://img.shields.io/github/followers/pushpanathDev?style=for-the-badge&logo=github&color=00d9ff&labelColor=1a1a2e)](https://github.com/pushpanathDev)
+[![GitHub stars](https://img.shields.io/github/stars/pushpanathDev?style=for-the-badge&logo=github&color=00d9ff&labelColor=1a1a2e&affiliations=OWNER)](https://github.com/pushpanathDev)
 
 </div>
 
-<div align="center">
+---
 
-<img src="https://streak-stats.demolab.com/?user=pushpanathDev&theme=tokyonight&hide_border=true" />
+## 📚 Publications & Writing
 
-</div>
+### 📄 IEEE Publication
+
+**AI-Driven Query Management and Issue Resolution System for Smart Villages**
+
+[![Read on IEEE](https://img.shields.io/badge/Read_on_IEEE-00629B?style=for-the-badge&logo=ieee&logoColor=white)](https://ieeexplore.ieee.org/document/11394120)
+
+### ✍️ I Write About Technology
+
+I share my thoughts, experiences, and technical explorations on AI, software development, and the things I learn along the way.
+
+<a href="https://medium.com/@pushpanathmr" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Visit_My_Blog-000000?style=for-the-badge&logo=medium&logoColor=white" alt="Visit My Blog">
+</a>
 
 ---
 
